@@ -1,0 +1,5 @@
+name: storyrama ci
+on: [push]
+jobs:
+  build-app:
+    runs-on: ubuntu-latest
