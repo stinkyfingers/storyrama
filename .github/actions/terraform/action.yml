@@ -23,6 +23,6 @@ runs:
     - id: plan
       run: terraform plan -out terraform.plan ${{ inputs.path }}
       shell: bash
-    # - id: apply
-    #   run: terraform apply -input=false terraform.plan
-    #   shell: bash
+    - id: apply
+      run: terraform apply -input=false terraform.plan
+      shell: bash
