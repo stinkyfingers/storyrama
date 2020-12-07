@@ -8,3 +8,4 @@ jobs:
       - uses: actions/setup-node@v2.1.2
       - run: yarn
       - run: yarn build
+      - uses: actions/terraform@v1

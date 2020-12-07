@@ -1,0 +1,13 @@
+name: terraform
+description: does terraforming
+inputs:
+  aws_access_key_id:
+    required: true
+    default: ${{ secrets.aws_access_key_id }}
+  aws_secret_access_key:
+    required: true
+    default: ${{ secrets.aws_secret_access_key }}
+  runs:
+    using: 'docker'
+    image: 'Dockerfile'
+    
