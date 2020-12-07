@@ -20,9 +20,9 @@ runs:
     # - id: validate
     #   run: terraform validate ${{ inputs.path }}
     #   shell: bash
-    # - id: plan
-    #   run: terraform plan -input=false -var-file=${{ inputs.path }}/${{ inputs.environment }}.tfvars -out terraform.plan ${{ inputs.path }}
-    #   shell: bash
+    - id: plan
+      run: terraform plan -out terraform.plan ${{ inputs.path }}
+      shell: bash
     # - id: apply
     #   run: terraform apply -input=false terraform.plan
     #   shell: bash
