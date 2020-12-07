@@ -8,5 +8,10 @@ jobs:
       - uses: actions/setup-node@v2.1.2
       - run: yarn
       - run: yarn build
-      - name: terraform
-        uses: ./.github/actions/terraform
+      - uses: hashicorp/terraform-github-actions@v1
+        with:
+          cli_config_credentials_token: ${{ secrets.TF_API_TOKEN }}
+      - name: terraform init
+        run: tf init
+      - name: terraform plan
+        run: tf plan
