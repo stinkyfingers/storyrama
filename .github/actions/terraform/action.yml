@@ -10,18 +10,19 @@ inputs:
 runs:
   using: "composite"
   steps:
-    - id: fmt
-      run: terraform fmt -check ${{ inputs.path }}
-      shell: bash
+    # - id: fmt
+    #   run: terraform fmt -check ${{ inputs.path }}
+    #   shell: bash
     - id: init
-      run: terraform init -input=false -backend-config="bucket=platform-terraform-state-${{ inputs.environment }}" ${{ inputs.path }}
+      # run: terraform init -input=false -backend-config="bucket=platform-terraform-state-${{ inputs.environment }}" ${{ inputs.path }}
+      run: terraform init -backend-config="bucket=storyrama/terraform.tfstate"
       shell: bash
-    - id: validate
-      run: terraform validate ${{ inputs.path }}
-      shell: bash
-    - id: plan
-      run: terraform plan -input=false -var-file=${{ inputs.path }}/${{ inputs.environment }}.tfvars -out terraform.plan ${{ inputs.path }}
-      shell: bash
-    - id: apply
-      run: terraform apply -input=false terraform.plan
-      shell: bash
+    # - id: validate
+    #   run: terraform validate ${{ inputs.path }}
+    #   shell: bash
+    # - id: plan
+    #   run: terraform plan -input=false -var-file=${{ inputs.path }}/${{ inputs.environment }}.tfvars -out terraform.plan ${{ inputs.path }}
+    #   shell: bash
+    # - id: apply
+    #   run: terraform apply -input=false terraform.plan
+    #   shell: bash
