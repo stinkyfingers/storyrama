@@ -15,7 +15,7 @@ runs:
     #   shell: bash
     - id: init
       # run: terraform init -input=false -backend-config="bucket=platform-terraform-state-${{ inputs.environment }}" ${{ inputs.path }}
-      run: terraform init -backend-config="bucket=storyrama/terraform.tfstate"
+      run: terraform init -backend-config="bucket=storyrama/terraform.tfstate" ${{ inputs.path }}
       shell: bash
     # - id: validate
     #   run: terraform validate ${{ inputs.path }}
