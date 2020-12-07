@@ -1,13 +1,27 @@
-name: terraform
-description: does terraforming
+name: 'terraform'
+description: 'Execute Terraform for a given environment'
 inputs:
-  aws_access_key_id:
+  path:
     required: true
-    default: ${{ secrets.aws_access_key_id }}
-  aws_secret_access_key:
+  environment:
     required: true
-    default: ${{ secrets.aws_secret_access_key }}
-  runs:
-    using: 'docker'
-    image: 'Dockerfile'
-    
+  # key:
+  #   required: true
+runs:
+  using: "composite"
+  steps:
+    - id: fmt
+      run: terraform fmt -check ${{ inputs.path }}
+      shell: bash
+    - id: init
+      run: terraform init -input=false -backend-config="bucket=platform-terraform-state-${{ inputs.environment }}" ${{ inputs.path }}
+      shell: bash
+    - id: validate
+      run: terraform validate ${{ inputs.path }}
+      shell: bash
+    - id: plan
+      run: terraform plan -input=false -var-file=${{ inputs.path }}/${{ inputs.environment }}.tfvars -out terraform.plan ${{ inputs.path }}
+      shell: bash
+    - id: apply
+      run: terraform apply -input=false terraform.plan
+      shell: bash
