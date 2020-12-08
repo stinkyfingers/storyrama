@@ -7,12 +7,12 @@ provider "aws" {
 #   acl = "private"
 # }
 
-# backend
-terraform {
-  backend "s3" {
-    bucket = "remotebackend"
-    key    = "storyrama/terraform.tfstate"
-    region = "us-west-1"
-    profile = "jds"
-  }
-}
+# # backend
+# terraform {
+#   backend "s3" {
+#     bucket = "remotebackend"
+#     key    = "storyrama/terraform.tfstate"
+#     region = "us-west-1"
+#     profile = "jds"
+#   }
+# }
