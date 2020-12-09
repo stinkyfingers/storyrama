@@ -10,9 +10,9 @@ inputs:
 runs:
   using: "composite"
   steps:
-    id: clean
-    run: rm -r ${{ inputs.path }}/.terraform
-    shell: bash
+    - id: clean
+      run: rm -r ${{ inputs.path }}/.terraform
+      shell: bash
     # - id: fmt
     #   run: terraform fmt -check ${{ inputs.path }}
     #   shell: bash
